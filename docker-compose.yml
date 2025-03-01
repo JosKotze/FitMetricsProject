@@ -1,0 +1,43 @@
+services:
+  sql:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: sql
+    environment:
+      ACCEPT_EULA: "Y"
+      MSSQL_SA_PASSWORD: "Password@1"
+    platform: "linux/amd64"
+    ports:
+      - "1433:1433"
+    ##volumes:
+    ##  - ./FitmetricsBackup.bak:/var/opt/mssql/backup/FitmetricsBackup.bak
+    ##  - ./init-db.sql:/var/opt/mssql/scripts/init-db.sql
+    ##networks:
+      ##- app-network
+# networks:
+#   app-network:
+
+# volumes:
+#   sqlserver-data:
+
+# api:
+#   build:
+#     context: ./FitMetricsApi/Strava2ExcelWepApiBackend
+#     dockerfile: Dockerfile
+#   ports:
+#     - "5000:5000"
+#   environment:
+#     - ASPNETCORE_ENVIRONMENT=Development
+#     - ConnectionStrings__DefaultConnection=Server=sqlserver;Database=FitMetricsDb;User Id=sa;Password=YourPassword123!;TrustServerCertificate=True;
+#   networks:
+#     - app-network
+#   depends_on:
+#     - sqlserver
+
+# ui:
+#   build:
+#     context: ./FitMetrics
+#     dockerfile: Dockerfile
+#   ports:
+#     - "8080:80" # Expose the UI on port 8080 instead of 4200
+#   depends_on:
+#     - api
