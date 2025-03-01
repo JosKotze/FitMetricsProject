@@ -1,0 +1,6 @@
+[submodule "API"]
+	path = API
+	url = https://github.com/JosKotze/FitMetricsApi.git
+[submodule "UI"]
+	path = UI
+	url = https://github.com/JosKotze/FitMetrics.git
